@@ -20,9 +20,6 @@ export class AppComponent implements OnInit{
     this.getUsers();
   }
 
-
-
-
   //funcion to get all users 
   getUsers(){
     this.http.get(apiUrl)
@@ -32,5 +29,5 @@ export class AppComponent implements OnInit{
         console.log(error);
       });
   }
-  
+
 }
