@@ -2,10 +2,15 @@
 
 
 
-<ul>
+<ul *ngIf="users">
   <li *ngFor='let user of users'>
     <div>
       <p>{{user.id}} - {{user.userName}}</p>
     </div>
   </li>
 </ul>
+
+
+<h2 *ngIf="!users">
+  Any user yet ...
+</h2>
