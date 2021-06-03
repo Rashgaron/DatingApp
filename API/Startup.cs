@@ -49,8 +49,8 @@ namespace API
 
             app.UseRouting();
 
-    // It must be below UseRouting
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            // It must be below UseRouting
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthorization();
 
