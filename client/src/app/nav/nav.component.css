@@ -1,0 +1,25 @@
+.contenedor-navegador{
+  justify-content:space-between;
+}
+
+.nav-container{
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.links{
+  display: flex;
+  align-items:center;
+}
+
+.form{
+  display:flex;
+  align-items:center;
+}
+
+.form > form > input,
+.form > form > button{
+  margin:.5em;
+}
+
