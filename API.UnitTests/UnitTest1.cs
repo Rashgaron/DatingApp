@@ -13,7 +13,7 @@ namespace API.UnitTests
         [SetUp]
         public void Setup()
         {
-          
+
         }
 
         [Test]
@@ -40,6 +40,7 @@ namespace API.UnitTests
 
           Assert.AreEqual(expectedUserName, actualUserDto.Username, "ID's should be equal");
           Assert.AreEqual(expectedToken, actualUserDto.Token);
+          Assert.IsTrue(false);
             
         }
     }
