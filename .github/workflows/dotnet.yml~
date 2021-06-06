@@ -21,4 +21,4 @@ jobs:
       - name: Build
         run: dotnet build API --configuration Release --no-restore
       - name: Test
-        run: dotnet test API.UnitTests --no-restore --verbosity normal
+        run: dotnet test API.UnitTests 
