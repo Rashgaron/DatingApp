@@ -17,13 +17,22 @@ export class NavComponent implements OnInit {
   }
 
   login(){
+
+
+
     this.accountService.login(this.model)
       .subscribe(response =>{
         console.log(response);
         this.loggedIn = true;
+        this.model = {};
       }, error =>{
         console.log(error);
+        this.model.password = "";
       });
+  }
+
+  logout(){
+    this.loggedIn = false;
   }
 
 }
