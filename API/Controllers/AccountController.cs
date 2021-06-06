@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using API.DTOs;
+using API.Interfaces;
 using Data;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,17 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly DataContext context;
+        private readonly ITokenService tokenService;
 
-        public AccountController(DataContext context)
+        public AccountController(DataContext context, ITokenService tokenService)
         {
             this.context = context;
+            this.tokenService = tokenService;
         }
 
 
         [HttpPost("register")]
-        public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if(await UserExists(registerDto.Username)) return BadRequest("Username is taken");
             
@@ -29,11 +32,12 @@ namespace API.Controllers
 
             saveUserInDB(user);
 
-            return user;
+            return createUserDto(user); 
+
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
 
             var user = await context.Users
@@ -47,10 +51,17 @@ namespace API.Controllers
 
             if(!checkPasswordIsCorrect(computedHash, user.PasswordHash)) return Unauthorized("Invalid password");
 
-            return user;
-
+            return createUserDto(user); 
         }
 
+        private UserDto createUserDto(AppUser user)
+        {
+            return new UserDto
+            {
+                Username = user.UserName,
+                Token = tokenService.CreateToken(user)
+            };
+        }
         private bool checkPasswordIsCorrect(byte[] computedHash, byte[] currentPasswordHash)
         {
 
