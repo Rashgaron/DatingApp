@@ -83,7 +83,6 @@ namespace API.Controllers
 
         private AppUser createUser(string username, string password)
         {
-
             using var hmac = new HMACSHA512();
 
             var newUser = new AppUser
@@ -91,8 +90,8 @@ namespace API.Controllers
                 UserName = username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
                 PasswordSalt = hmac.Key 
-
             };
+
             return newUser;    
         }
 
