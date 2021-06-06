@@ -54,7 +54,7 @@ namespace API.Controllers
             return createUserDto(user); 
         }
 
-        private UserDto createUserDto(AppUser user)
+        public UserDto createUserDto(AppUser user)
         {
             return new UserDto
             {
