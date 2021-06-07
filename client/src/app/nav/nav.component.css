@@ -23,3 +23,7 @@
   margin:.5em;
 }
 
+.dropdown-toggle,
+.dropdown-item{
+  cursor:pointer;
+}
