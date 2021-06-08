@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 const apiUrl = 'https://localhost:5001/api/users';
 //Decorator, way of giving a class extra power
@@ -14,13 +16,19 @@ export class AppComponent implements OnInit{
   title = 'The dating app';
   users:any; // Uses any for any type of return. It can be anything. Whatever it returns
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private accountService: AccountService) {}
 
   ngOnInit(){
     this.getUsers();
+    this.setCurrentUser();
   }
 
-  //funcion to get all users 
+  setCurrentUser(){
+    const user: User = JSON.parse(localStorage.getItem("user") || '{}');
+    this.accountService.setCurrentUser(user);
+  }
+
+  //funcion to get all users
   getUsers(){
     this.http.get(apiUrl)
       .subscribe(response => {

@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace API.UnitTests
 {
     [TestFixture]
-    public class Tests
+    public class AccountControllerTests
     {
         [SetUp]
         public void Setup()
