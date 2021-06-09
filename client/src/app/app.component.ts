@@ -13,6 +13,7 @@ const apiUrl = 'https://localhost:5001/api/users';
 })
 
 export class AppComponent implements OnInit{
+
   title = 'The dating app';
   users:any; // Uses any for any type of return. It can be anything. Whatever it returns
 
@@ -23,8 +24,13 @@ export class AppComponent implements OnInit{
   }
 
   setCurrentUser(){
-    const user: User = JSON.parse(localStorage.getItem("user") || '{}');
-    this.accountService.setCurrentUser(user);
+
+    if(localStorage.getItem('user')){
+      const user: User = JSON.parse(localStorage.getItem("user") || '{}');
+      this.accountService.setCurrentUser(user);
+    }else
+      this.accountService.setCurrentUser(null);
+
   }
 
 }

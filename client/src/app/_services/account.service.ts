@@ -41,12 +41,20 @@ export class AccountService {
   }
 
 
-  setCurrentUser(user: User){
-    this.currentUserSource.next(user);
+  setCurrentUser(user: any){
+
+    user
+    ? this.currentUserSource.next(user)
+    : this.resetCurrentUser();
+
   }
 
   logout(){
     localStorage.removeItem('user');
+    this.resetCurrentUser();
+  }
+
+  resetCurrentUser(){
     this.currentUserSource = new ReplaySubject<User>(1);
     this.currentUser$ = this.currentUserSource.asObservable();
   }
