@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
     return this.accountService.currentUser$.pipe(
 
       map((user:any) =>{
-        console.log("Hola")
         if(user) return true;
         return false
       })

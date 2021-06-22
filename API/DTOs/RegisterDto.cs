@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+//That classes looks like simple model on mongodb
+
 namespace API.DTOs
 {
     public class RegisterDto
