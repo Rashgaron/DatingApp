@@ -26,10 +26,10 @@ namespace API
             catch(Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger>();
-                logger.LogError(ex, "An error occurred during migration")
-
+                logger.LogError(ex, "An error occurred during migration");
             }
-            host.RunAsync();
+
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
