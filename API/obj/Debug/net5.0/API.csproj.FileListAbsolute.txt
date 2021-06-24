@@ -127,3 +127,5 @@ C:/Users/Daniel/Documents/Programacion/DatingApp/API/bin/Debug/net5.0/Microsoft.
 /home/Programming/angular/API/bin/Debug/net5.0/Microsoft.IdentityModel.Tokens.dll
 /home/Programming/angular/API/bin/Debug/net5.0/System.IdentityModel.Tokens.Jwt.dll
 /home/Programming/angular/API/bin/Debug/net5.0/Data/UserSeedData.json
+/home/Programming/angular/API/bin/Debug/net5.0/AutoMapper.dll
+/home/Programming/angular/API/bin/Debug/net5.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
