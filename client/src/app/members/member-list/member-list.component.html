@@ -1,5 +1,5 @@
-<div >
-    <div class="contenedor">
-        <p class="item" *ngFor="let member of members">{{member.knownAs}}</p>
+<div class="contenedor">
+    <div *ngFor="let member of members">
+        <app-member-card [member]="member"></app-member-card>
     </div>
 </div>

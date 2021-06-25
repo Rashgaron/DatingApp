@@ -1,0 +1,34 @@
+.card:hover img{
+    transform: scale(1.2, 1.2);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+    opacity:.7;
+}
+
+.card img{
+    transform: scale(1,1);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+}
+
+.card-image-wrapper{
+    overflow:hidden;
+}
+
+.grid-list{
+    display:none;
+    grid-template-columns: repeat(3,1fr);
+    position:absolute;
+    width: 100%;
+    bottom:0%;
+    transition: all .3s;
+}
+
+.card:hover .grid-list{
+    display:grid;
+    bottom:20%;
+}
+
+.animate{
+    transition: all .3s ease-in-out;
+}
