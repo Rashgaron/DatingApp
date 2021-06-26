@@ -1,0 +1,35 @@
+
+.contenedor-usuario{
+  --color-borde: #eee;
+}
+
+.contenedor-usuario{
+  display: grid;
+  grid-template-columns: .4fr 1fr;
+  gap:2em;
+}
+
+.contenedor-card{
+  padding: 15px;
+  border: 1px solid var(--color-borde);
+}
+
+.imagen-perfil{
+  padding:5px;
+  margin: 5px;
+  border:1px solid var(--color-borde);
+}
+
+.botonera{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.botonera-item{
+  margin: 5px;
+}
+
+.photo-gallery{
+  display:inline-block;
+  margin-bottom: 20px;
+}

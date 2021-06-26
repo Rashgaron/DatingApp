@@ -1,0 +1,5 @@
+The Http client offers the following major features:
+    - The ability to request typed response objects 
+    - Streamlined error handling
+    - Testability features
+    - Request and response interception

@@ -1,6 +1,6 @@
 .card:hover img{
     transform: scale(1.2, 1.2);
-    transition-duration: .5s;
+    transition: all .5s ;
     transition-timing-function: ease-out;
     opacity:.7;
 }
@@ -16,17 +16,18 @@
 }
 
 .grid-list{
-    display:none;
+    display:grid;
     grid-template-columns: repeat(3,1fr);
     position:absolute;
     width: 100%;
     bottom:0%;
-    transition: all .3s;
+    opacity:0;
+
 }
 
 .card:hover .grid-list{
-    display:grid;
-    bottom:20%;
+  opacity:1;
+  bottom:20%;
 }
 
 .animate{
