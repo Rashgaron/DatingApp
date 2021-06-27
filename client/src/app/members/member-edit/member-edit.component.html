@@ -1,6 +1,5 @@
 <ng-container *ngIf="member">
 
-
   <div class="contenedor-usuario">
 
     <div class="header">
@@ -12,7 +11,7 @@
 
     <div class="contenedor-card">
       <div class="imagen-perfil">
-        <img src="{{ member.photoUrl || './assets/user.png' }}" alt="imagen" />
+        <img src="{{ member.photoUrl || './assets/user.png' }}" alt="imagen" width="100%"/>
       </div>
       <div>
         <strong>Location:</strong>
@@ -44,7 +43,7 @@
             <h4>Looking for</h4>
             <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
             <h4>Interests</h4>
-            <textarea class="form-control" [(ngModel)]="member.interest" name="interests" rows="6"></textarea>
+            <textarea class="form-control" [(ngModel)]="member.interest" name="interest" rows="6"></textarea>
             <h4>Location Details:</h4>
 
             <div class="contenedor-ciudad">
