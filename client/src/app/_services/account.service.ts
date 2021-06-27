@@ -12,7 +12,7 @@ import { User } from '../_models/user';
 
 export class AccountService {
 
-  baseUrl = environment.apiUrl; 
+  baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -43,11 +43,9 @@ export class AccountService {
 
 
   setCurrentUser(user: any){
-
     user
     ? this.currentUserSource.next(user)
     : this.resetCurrentUser();
-
   }
 
   logout(){
