@@ -11,7 +11,7 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberDetailComponent implements OnInit {
 
-  member: Member | undefined;
+  member!: Member;
   galleryOptions: NgxGalleryOptions[] = [];
   galleryImages: NgxGalleryImage[] = [];
 
