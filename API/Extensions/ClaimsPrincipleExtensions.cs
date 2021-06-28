@@ -1,3 +1,4 @@
+using System;
 using System.Security.Claims;
 
 namespace API.Extensions
@@ -8,6 +9,6 @@ namespace API.Extensions
         {
             return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
-        
+
     }
 }
