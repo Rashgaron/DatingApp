@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj": {}
+    "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj": {
+    "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj",
+        "projectUniqueName": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj",
         "projectName": "API.UnitTests",
-        "projectPath": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj",
+        "projectPath": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\API.UnitTests.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\obj\\",
+        "outputPath": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj": {
-                "projectPath": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj"
+              "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj": {
+                "projectPath": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj"
               }
             }
           }
@@ -84,14 +84,14 @@
         }
       }
     },
-    "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj": {
+    "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj",
+        "projectUniqueName": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj",
+        "projectPath": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\obj\\",
+        "outputPath": "c:\\Users\\Daniel\\Documents\\Programacion\\DatingApp\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,6 +120,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.15.2, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.6, )"

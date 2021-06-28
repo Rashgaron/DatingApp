@@ -132,3 +132,6 @@ C:\Users\Daniel\Documents\Programacion\DatingApp\API\obj\Debug\net5.0\scopedcss\
 C:\Users\Daniel\Documents\Programacion\DatingApp\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
 C:\Users\Daniel\Documents\Programacion\DatingApp\API\obj\Debug\net5.0\API.csproj.CopyComplete
 C:\Users\Daniel\Documents\Programacion\DatingApp\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\Daniel\Documents\Programacion\DatingApp\API\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\Users\Daniel\Documents\Programacion\DatingApp\API\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll
+C:\Users\Daniel\Documents\Programacion\DatingApp\API\bin\Debug\net5.0\Newtonsoft.Json.dll
