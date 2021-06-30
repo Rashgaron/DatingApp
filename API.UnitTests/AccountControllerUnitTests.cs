@@ -2,6 +2,7 @@ using API.Controllers;
 using API.Data;
 using API.DTOs;
 using API.Interfaces;
+using Data;
 using Entities;
 using Moq;
 using NUnit.Framework;
@@ -34,7 +35,11 @@ namespace API.UnitTests
           var fakeTokenService = new Mock<ITokenService>();
           fakeTokenService.Setup(x => x.CreateToken(It.IsAny<AppUser>())).Returns(expectedToken);
 
-          AccountController ac = new AccountController(null, fakeTokenService.Object, null);
+          var fakeUserRepository = new Mock<IUserRepository>();
+
+          var context = new Mock<DataContext>();
+
+          AccountController ac = new AccountController(context.Object, fakeTokenService.Object, fakeUserRepository.Object);
 
           UserDto actualUserDto = ac.createUserDto(user);          
 
