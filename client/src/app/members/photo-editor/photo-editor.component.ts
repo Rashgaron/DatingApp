@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-photo-editor',
@@ -19,7 +19,7 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
   user!: User;
 
-  constructor(private accountService: AccountService) { 
+  constructor(private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -32,6 +32,8 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   initializeUploader(){
+    console.log(environment.apiUrl);
+    console.log(this.baseUrl);
     this.uploader = new FileUploader({
       url:this.baseUrl + 'users/add-photo',
       authToken: 'Bearer ' + this.user.token,
@@ -52,6 +54,7 @@ export class PhotoEditorComponent implements OnInit {
         this.member.photos.push(photo);
       }
     }
+
   }
 
 }

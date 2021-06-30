@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace API.Controllers
         {
 
             var user = await context.Users
+                .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
             if(user == null) return Unauthorized("Invalid username");
@@ -59,7 +61,8 @@ namespace API.Controllers
             return new UserDto
             {
                 Username = user.UserName,
-                Token = tokenService.CreateToken(user)
+                Token = tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
         private bool checkPasswordIsCorrect(byte[] computedHash, byte[] currentPasswordHash)
