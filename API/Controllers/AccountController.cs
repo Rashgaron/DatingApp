@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Interfaces;
+using AutoMapper;
 using Data;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +18,11 @@ namespace API.Controllers
         private readonly DataContext context;
         private readonly ITokenService tokenService;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository)
+        public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _userRepository = userRepository;
             this.context = context;
             this.tokenService = tokenService;
@@ -31,12 +34,24 @@ namespace API.Controllers
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
-            var user = createUser(registerDto.Username, registerDto.Password);
+            var newUser = _mapper.Map<AppUser>(registerDto);
 
-            saveUserInDB(user);
+            using var hmac = new HMACSHA512();
 
-            return createUserDto(user);
+            newUser.UserName = registerDto.Username.ToLower();
+            newUser.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            newUser.PasswordSalt = hmac.Key;
 
+            // var user = createUser(registerDto.Username, registerDto.Password);
+
+            saveUserInDB(newUser);
+
+            return new UserDto
+            {
+                Username = newUser.UserName,
+                Token = tokenService.CreateToken(newUser),
+                KnownAs = newUser.KnownAs
+            }; 
         }
 
         [HttpPost("login")]
@@ -53,7 +68,13 @@ namespace API.Controllers
 
             if (!checkPasswordIsCorrect(computedHash, user.PasswordHash)) return Unauthorized("Invalid password");
 
-            return createUserDto(user);
+            return new UserDto
+            {
+                Username = user.UserName,
+                Token = tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                KnownAs = user.KnownAs
+            };
         }
 
         public UserDto createUserDto(AppUser user)
@@ -62,9 +83,10 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
             };
         }
+
         private bool checkPasswordIsCorrect(byte[] computedHash, byte[] currentPasswordHash)
         {
 
