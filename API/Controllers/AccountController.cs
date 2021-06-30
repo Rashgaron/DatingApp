@@ -16,9 +16,11 @@ namespace API.Controllers
     {
         private readonly DataContext context;
         private readonly ITokenService tokenService;
+        private readonly IUserRepository _userRepository;
 
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(DataContext context, ITokenService tokenService, IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             this.context = context;
             this.tokenService = tokenService;
         }
@@ -27,13 +29,13 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if(await UserExists(registerDto.Username)) return BadRequest("Username is taken");
-            
-            var user = createUser(registerDto.Username, registerDto.Password); 
+            if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
+
+            var user = createUser(registerDto.Username, registerDto.Password);
 
             saveUserInDB(user);
 
-            return createUserDto(user); 
+            return createUserDto(user);
 
         }
 
@@ -41,19 +43,17 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
 
-            var user = await context.Users
-                .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+            var user = await _userRepository.GetUserByUserNameAsync(loginDto.Username.ToLower());
 
-            if(user == null) return Unauthorized("Invalid username");
+            if (user == null) return Unauthorized("Invalid username");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt); 
+            using var hmac = new HMACSHA512(user.PasswordSalt);
 
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
 
-            if(!checkPasswordIsCorrect(computedHash, user.PasswordHash)) return Unauthorized("Invalid password");
+            if (!checkPasswordIsCorrect(computedHash, user.PasswordHash)) return Unauthorized("Invalid password");
 
-            return createUserDto(user); 
+            return createUserDto(user);
         }
 
         public UserDto createUserDto(AppUser user)
@@ -68,9 +68,9 @@ namespace API.Controllers
         private bool checkPasswordIsCorrect(byte[] computedHash, byte[] currentPasswordHash)
         {
 
-            for(int i = 0; i < computedHash.Length ; i++)
+            for (int i = 0; i < computedHash.Length; i++)
             {
-                if(computedHash[i] != currentPasswordHash[i]) return false; 
+                if (computedHash[i] != currentPasswordHash[i]) return false;
             }
 
             return true;
@@ -82,7 +82,7 @@ namespace API.Controllers
         {
             context.Users.Add(user);
             await context.SaveChangesAsync();
-        }        
+        }
 
         private AppUser createUser(string username, string password)
         {
@@ -92,10 +92,10 @@ namespace API.Controllers
             {
                 UserName = username.ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
-                PasswordSalt = hmac.Key 
+                PasswordSalt = hmac.Key
             };
 
-            return newUser;    
+            return newUser;
         }
 
         private async Task<bool> UserExists(string username)
