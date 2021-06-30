@@ -11,3 +11,18 @@ img.img-thumbnail{
 input[type=file]{
   color: transparent;
 }
+
+.contenedor{
+  display:grid;
+}
+
+.contenedor-imagenes{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap:2em;
+}
+
+.contenedor-imagenes-botonera{
+  display:flex;
+  justify-content:space-around;
+}

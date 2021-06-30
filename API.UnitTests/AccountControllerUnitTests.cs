@@ -1,4 +1,5 @@
 using API.Controllers;
+using API.Data;
 using API.DTOs;
 using API.Interfaces;
 using Entities;
@@ -33,7 +34,7 @@ namespace API.UnitTests
           var fakeTokenService = new Mock<ITokenService>();
           fakeTokenService.Setup(x => x.CreateToken(It.IsAny<AppUser>())).Returns(expectedToken);
 
-          AccountController ac = new AccountController(null, fakeTokenService.Object);
+          AccountController ac = new AccountController(null, fakeTokenService.Object, null);
 
           UserDto actualUserDto = ac.createUserDto(user);          
 
