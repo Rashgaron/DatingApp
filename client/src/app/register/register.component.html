@@ -22,7 +22,7 @@
   <app-text-input [formControl]='registerForm.controls["password"]' [label]='"Password"' [type]='"password"'></app-text-input>
   <app-text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Canfirm Password"'[type]='"password"'></app-text-input>
 
-  <div class="row" *ngIf="validationErrors != undefined">
+  <div class="row" *ngIf="validationErrors.length > 0">
       <ul class="text-danger">
           <li *ngFor="let error of validationErrors">
               {{error}}
