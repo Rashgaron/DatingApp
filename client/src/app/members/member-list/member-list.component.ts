@@ -20,6 +20,8 @@ export class MemberListComponent implements OnInit {
   constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
+    this.pageNumber = 1;
+    this.pageSize = 5;
     this.loadMembers();
   }
 
@@ -28,6 +30,13 @@ export class MemberListComponent implements OnInit {
       this.members = response.result;
       this.pagination = response.pagination;
     })
+  }
+
+  pageChanged(event: any){
+    console.log(event)
+    console.log(event.page);
+    this.pageNumber = event.page;
+    this.loadMembers();
   }
 
 }

@@ -19,7 +19,6 @@ namespace API.Helpers
             this.PageSize = pageSize;
             this.TotalCount = count;
 
-
             //Add items to this list
             AddRange(items);
 
