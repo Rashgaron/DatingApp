@@ -23,11 +23,11 @@
       </div>
       <div>
         <strong>Last Active:</strong>
-        <p>{{ member.lastActive }}</p>
+        <p>{{ member.lastActive | timeago }}</p>
       </div>
       <div>
         <strong>Member Since:</strong>
-        <p>{{ member.created }}</p>
+        <p>{{ member.created | date: 'DD MMM YYYY' }}</p>
       </div>
       <div class="botonera">
         <button [disabled]="!editForm.dirty" type="submit" form="editForm" class="btn btn-success botonera-item">Save Changes</button>

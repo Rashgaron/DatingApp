@@ -19,11 +19,11 @@
       </div>
       <div>
         <strong>Last Active:</strong>
-        <p>{{ member.lastActive }}</p>
+        <p>{{ member.lastActive | timeago }}</p>
       </div>
       <div>
         <strong>Member Since:</strong>
-        <p>{{ member.created }}</p>
+        <p>{{ member.created | date:'dd MMM YYYY'}}</p>
       </div>
       <div class="botonera">
         <button class="btn btn-primary botonera-item">Like</button>
