@@ -30,23 +30,25 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
 
                 throw modalStateErrors.flat();
-              }else{
+              }else if(typeof(err.error) === 'object'){
                 this.toastr.error(err.statusText, err.status);
+              }else{
+                this.toastr.error(err.error, err.status);
               }
               break;
 
             case 401:
               this.toastr.error(err.statusText,err.status);
               break;
-            
-            case 404: 
+
+            case 404:
               this.router.navigateByUrl('/not-found');
               break;
-            case 500: 
+            case 500:
               const navigationExtras: NavigationExtras = {state: {error:err.error}};
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
-            default: 
+            default:
               this.toastr.error('Something unexpected went wrong');
               console.log(err);
               break;
